@@ -1,0 +1,25 @@
+@use "sass:math";
+
+@function px-to-rem($px, $base: 16) {
+  @return math.div($px, $base) * 1rem;
+}
+
+@mixin respond-up($bp) {
+  @media (min-width: map-get($grid-breakpoints, $bp)) {
+    @content;
+  }
+}
+
+@mixin flex-center($dir: row, $gap: 1rem) {
+  display: flex;
+  flex-direction: $dir;
+  align-items: center;
+  justify-content: center;
+  gap: $gap;
+}
+
+@mixin efecto-card($radio: px-to-rem(12)) {
+  border-radius: $radio;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
+  transition: transform .2s ease, box-shadow .2s ease, color .2s ease;
+}

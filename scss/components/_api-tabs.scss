@@ -1,0 +1,42 @@
+// ══════════════════════════════════════════════════
+// Pestañas de fuente de datos (Gratis / De pago)
+// y nota de cotización de la sección de API
+// ══════════════════════════════════════════════════
+
+.api-tabs {
+    gap: .5rem;
+    margin-bottom: .6rem;
+
+    .nav-link {
+        color: $color-text-muted;
+        font-weight: 600;
+
+        &:hover {
+            background: rgba(255, 255, 255, .06);
+            color: $color-text;
+        }
+
+        &.active {
+            background: $color-accent;
+            color: #ffffff;
+        }
+
+        &:focus-visible {
+            outline: 2px solid $color-accent-bright;
+            outline-offset: 2px;
+        }
+    }
+
+    // Contador de juegos por fuente (ej. «417»)
+    &__count {
+        display: inline-block;
+        margin-left: .35rem;
+        padding: .05rem .45rem;
+        border-radius: 999px;
+        background: rgba(0, 0, 0, .28);
+        font-size: .72rem;
+        font-weight: 700;
+        vertical-align: middle;
+    }
+}
+

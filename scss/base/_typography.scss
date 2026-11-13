@@ -1,0 +1,6 @@
+h1, h2, h3 { font-weight: 600;}
+
+h1 {
+    font-size: 2rem;
+    @include respond-up(lg) {font-size: 3rem;}
+}

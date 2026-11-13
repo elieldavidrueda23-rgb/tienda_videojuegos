@@ -1,0 +1,161 @@
+// ══════════════════════════════════════════════════
+// Checkout — formulario de compra (#modalCompra)
+// Paso 1: datos de envío · Paso 2: mensaje de éxito
+// ══════════════════════════════════════════════════
+
+// Botón «Finalizar compra» junto a «Vaciar carrito»
+.cart-actions {
+    &__buy {
+        flex: 1;
+        padding: .55rem 1rem;
+    }
+}
+
+.checkout-intro {
+    margin: 0 0 1rem;
+    font-size: .88rem;
+    color: $color-text-muted;
+
+    span {
+        color: $color-accent-bright;
+    }
+}
+
+// Resumen del pedido (unidades + total)
+.checkout-summary {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+    padding: .85rem 1rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: px-to-rem(8);
+    background: $color-surface-dark;
+
+    &__line {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin: 0;
+        font-size: .9rem;
+        color: $color-text-muted;
+
+        strong {
+            color: $color-accent-bright;
+            font-weight: 600;
+        }
+    }
+}
+
+// Campos del formulario (tema oscuro)
+#formCompra {
+    .form-label {
+        margin-bottom: .3rem;
+        font-size: .85rem;
+        color: $color-text;
+
+        span {
+            color: $color-accent-bright;
+        }
+    }
+
+    .form-control {
+        background: $color-surface;
+        border: 1px solid rgba(255, 255, 255, .15);
+        color: $color-text;
+
+        &::placeholder {
+            color: rgba(154, 165, 177, .6);
+        }
+
+        &:focus {
+            background: $color-surface;
+            border-color: $color-accent;
+            color: $color-text;
+            box-shadow: 0 0 0 .2rem rgba(16, 124, 16, .35);
+        }
+    }
+
+    // Feedback de validación de Bootstrap sobre fondo oscuro
+    .invalid-feedback {
+        color: #ff8a8a;
+    }
+
+    .valid-feedback {
+        color: $color-accent-bright;
+    }
+}
+
+// Paso 2: mensaje de compra exitosa
+.checkout-success {
+    padding: .5rem .25rem .25rem;
+    text-align: center;
+
+    &__check {
+        display: grid;
+        place-items: center;
+        width: 3.75rem;
+        height: 3.75rem;
+        margin: 0 auto 1rem;
+        border-radius: 50%;
+        background: rgba(16, 124, 16, .25);
+        border: 2px solid $color-accent-bright;
+        color: $color-accent-bright;
+        font-size: 1.9rem;
+        font-weight: 700;
+        line-height: 1;
+    }
+
+    &__title {
+        margin: 0 0 .5rem;
+        font-size: 1.3rem;
+        color: #ffffff;
+    }
+
+    &__text {
+        margin: 0 0 1.1rem;
+        font-size: .93rem;
+        color: $color-text-muted;
+
+        strong {
+            color: $color-text;
+        }
+    }
+
+    &__datos {
+        padding: .85rem 1rem;
+        margin: 0 0 1rem;
+        list-style: none;
+        text-align: left;
+        border: 1px solid rgba(255, 255, 255, .12);
+        border-radius: px-to-rem(8);
+        background: $color-surface-dark;
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: .75rem;
+            padding: .4rem 0;
+            font-size: .85rem;
+            color: $color-text-muted;
+
+            & + li {
+                border-top: 1px solid rgba(255, 255, 255, .07);
+            }
+
+            strong {
+                color: $color-accent-bright;
+                font-weight: 600;
+                text-align: right;
+                word-break: break-word;
+            }
+        }
+    }
+
+    &__nota {
+        margin: 0;
+        font-size: .82rem;
+        color: $color-text-muted;
+    }
+}

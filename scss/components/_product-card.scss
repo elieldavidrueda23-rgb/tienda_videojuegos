@@ -1,0 +1,57 @@
+.product-card {
+    @include efecto-card;
+    position: relative;
+    display: block;
+    padding: max(1rem, 2vw);
+    background: $color-surface;
+    border: 1px solid rgba(255, 255, 255, .08);
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+
+    &__img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        border-radius: px-to-rem(8);
+        margin-bottom: .75rem;
+        background: $color-surface-dark;
+    }
+    &__title {
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: .25rem;
+    }
+    &__price {
+        color: $color-text-muted;
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+    &__cta {
+        display: inline-block;
+        margin-top: .5rem;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        font-family: inherit;
+        font-size: .875rem;
+        font-weight: 600;
+        color: $color-accent-bright;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+        &:focus-visible {
+            outline: 2px solid $color-accent-bright;
+            outline-offset: 3px;
+        }
+    }
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(16, 124, 16, .45);
+        border-color: rgba(99, 214, 99, .35);
+    }
+}

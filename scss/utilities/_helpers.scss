@@ -1,0 +1,5 @@
+.text-accent { color: $color-accent-bright;}
+.bg-soft { background-color: $color-surface;}
+
+// Asegura que los atributos hidden siempre oculten el elemento
+[hidden] { display: none !important;}

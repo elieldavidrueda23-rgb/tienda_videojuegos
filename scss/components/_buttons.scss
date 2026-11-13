@@ -1,0 +1,9 @@
+.btn-brand{
+    @include efecto-card(px-to-rem(30));
+    background: $color-accent;
+    color: #ffffff;
+    padding: .6rem 1.8rem;
+    font-weight: 600;
+
+    &:hover {background: $color-accent-hover; color: #ffffff;}
+}

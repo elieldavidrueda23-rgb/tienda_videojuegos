@@ -1,0 +1,232 @@
+.hero {
+    @include flex-center(column, .75rem);
+    min-height: 50vh;
+    padding: max(1rem, 4vw );
+    background: $color-surface-dark;
+    color: #ffffff;
+    text-align: center;
+}
+.video-hero{
+    width: 100%;
+    max-width: 560px;
+}
+
+/* ── Destacado del hero: un producto a la vez con flechas ← → ── */
+.hero-showcase {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: max(.75rem, 3vw);
+    width: 100%;
+    max-width: 560px;
+    margin-top: .25rem;
+
+    &__arrow {
+        flex: 0 0 auto;
+        display: grid;
+        place-items: center;
+        width: 2.75rem;
+        height: 2.75rem;
+        padding: 0 0 .15rem; /* centra ópticamente ‹ › */
+        background: $color-surface;
+        border: 2px solid rgba(255, 255, 255, .14);
+        border-radius: 50%;
+        color: $color-text;
+        font-size: 1.6rem;
+        line-height: 1;
+        cursor: pointer;
+        transition: border-color .2s ease, color .2s ease, transform .15s ease;
+
+        &:hover {
+            border-color: $color-accent-hover;
+            color: $color-accent-bright;
+            transform: translateY(-2px);
+        }
+
+        &:focus-visible {
+            outline: 2px solid $color-accent-bright;
+            outline-offset: 2px;
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
+    &__body {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex: 1 1 auto;
+        min-width: 0;
+        padding: .75rem 1rem;
+        background: $color-surface;
+        border: 1px solid rgba(255, 255, 255, .08);
+        border-radius: .75rem;
+        text-align: left;
+    }
+
+    &__img {
+        flex: 0 0 auto;
+        width: 5.5rem;
+        height: 5.5rem;
+        object-fit: cover;
+        border-radius: .5rem;
+        background: $color-surface-dark;
+    }
+
+    &__info {
+        min-width: 0;
+    }
+
+    &__name {
+        margin: 0 0 .15rem;
+        font-size: .95rem;
+        font-weight: 600;
+        color: #ffffff;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    &__price {
+        margin: 0 0 .5rem;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: $color-accent-bright;
+    }
+
+    /* Móvil: tarjeta y flechas más compactas */
+    @media (max-width: 480px) {
+        gap: .5rem;
+
+        &__arrow {
+            width: 2.4rem;
+            height: 2.4rem;
+            font-size: 1.35rem;
+        }
+
+        &__body {
+            padding: .6rem .75rem;
+            gap: .75rem;
+        }
+
+        &__img {
+            width: 4rem;
+            height: 4rem;
+        }
+    }
+}
+
+/* ── Tráiler destacado: video principal + selector de estrenos ──
+   Lleva un margen superior extra y se presenta en tarjeta, con el mismo
+   fondo/borde/radio que .hero-showcase__body para que hero y trailer
+   se vean como un mismo sistema visual */
+.hero-trailer {
+    @include flex-center(column, .6rem);
+    width: 100%;
+    max-width: 560px;
+    margin-top: .75rem;
+    padding: .75rem 1rem; /* igual que .hero-showcase__body: mantiene el ancho
+                             útil para que las 2 filas de chips quepan sin partirse */
+    background: $color-surface;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: .75rem;
+
+    &__now {
+        margin: 0;
+        font-size: .85rem;
+        font-weight: 600;
+        letter-spacing: .02em;
+        color: $color-accent-bright;
+    }
+
+    /* Dos filas: la del catálogo y, debajo, la de estrenos dinámicos */
+    &__nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .5rem;
+        width: 100%;
+        margin-top: .25rem;
+    }
+
+    &__set {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: .5rem;
+    }
+
+    &__tab {
+        display: inline-flex;
+        align-items: center;
+        gap: .45rem;
+        padding: .35rem .7rem;
+        background: $color-surface;
+        border: 2px solid transparent;
+        border-radius: .5rem;
+        color: $color-text-muted;
+        font-size: .8rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: border-color .2s ease, color .2s ease, transform .15s ease;
+
+        img {
+            width: 1.6rem;
+            height: 1.6rem;
+            object-fit: contain;
+        }
+
+        span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* Estrenos: `flex: 1 1 0` hace que los 4 crezcan a partes iguales
+           dentro del ancho de la tarjeta (la fila nunca se parte) y
+           `max-width` los iguala; los títulos largos se cortan con "…".
+           El nombre completo se ve en el title al pasar el mouse y en el
+           rótulo 🎬 al seleccionar el trailer */
+        &--estreno {
+            flex: 1 1 0;
+            min-width: 0;
+            max-width: 8.25rem;
+            padding: .3rem .55rem;
+            gap: .4rem;
+            font-size: .75rem;
+
+            img {
+                width: 1.35rem;
+                height: 1.35rem;
+            }
+        }
+
+        &:hover {
+            border-color: $color-accent-hover;
+            color: $color-text;
+            transform: translateY(-2px);
+        }
+
+        &:focus-visible {
+            outline: 2px solid $color-accent-bright;
+            outline-offset: 2px;
+        }
+
+        &.is-active {
+            border-color: $color-accent;
+            color: $color-text;
+            background: rgba($color-accent, .18);
+        }
+    }
+}
+
+/* Tráiler MP4 devuelto por RAWG (respaldo cuando no hay ID de YouTube) */
+.hero-trailer__video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000000;
+    display: block;
+}

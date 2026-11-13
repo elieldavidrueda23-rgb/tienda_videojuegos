@@ -1,0 +1,35 @@
+// ══════════════════════════════════════════════════
+// Paleta — Tema oscuro estilo Xbox
+// ══════════════════════════════════════════════════
+
+// Fondos y superficies
+$color-bg:           #101010; // Fondo de página (casi negro, estilo dashboard)
+$color-surface:      #1a1a1a; // Superficies elevadas (tarjetas)
+$color-surface-dark: #000000; // Secciones oscuras (hero, footer)
+
+// Texto
+$color-text:       #f2f2f2; // Texto principal
+$color-text-muted: #9aa5b1; // Texto secundario (precios, etiquetas)
+
+// Acentos — Xbox Green oficial
+$color-accent:        #107c10; // Verde Xbox (botones, bordes, enlaces)
+$color-accent-hover:  #0c6b0c; // Hover / estado activo
+$color-accent-bright: #63d663; // Verde claro para texto sobre fondo oscuro
+
+// Sobrescribe valores por defecto de Bootstrap
+$primary:    $color-accent;
+$secondary:  $color-text-muted;
+$success:    #2e9e6b;
+$danger:     #d64545;
+$warning:    $color-accent;
+$body-bg:    $color-bg;
+$body-color: $color-text;
+
+$font-family-base: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+$font-size-base:   1rem;
+$font-weight-base: 400;
+
+$spacer: 1rem;
+$grid-breakpoints: (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px);
+$container-max-widths: (sm: 540px, md: 720px, lg: 960px, xl: 1140px, xxl: 1320px);
+$enable-shadows: true;

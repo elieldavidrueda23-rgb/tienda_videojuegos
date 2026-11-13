@@ -1,0 +1,133 @@
+// ══════════════════════════════════════════════════
+// Sección "Novedades en vivo" — datos desde API REST
+// (tarjetas renderizadas por JavaScript en #apiGrid)
+// ══════════════════════════════════════════════════
+
+.api-section {
+    &__head {
+        @include flex-center(row, 1rem);
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-bottom: 1.25rem;
+    }
+}
+
+// Estado de carga (spinner + texto)
+.api-status {
+    @include flex-center(column, .75rem);
+    padding: 2.5rem 0;
+    color: $color-text-muted;
+
+    .spinner-border {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+
+// Tarjeta de producto proveniente de la API
+.api-card {
+    @include efecto-card;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    background: $color-surface;
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    &__img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        background: $color-surface-dark;
+    }
+
+    &__body {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        padding: max(1rem, 1.5vw);
+    }
+
+    &__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .4rem;
+        margin-bottom: .6rem;
+
+        .badge {
+            font-weight: 500;
+            letter-spacing: .02em;
+        }
+    }
+
+    &__title {
+        margin-bottom: .4rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #ffffff;
+    }
+
+    &__desc {
+        flex: 1;
+        margin-bottom: .75rem;
+        font-size: .85rem;
+        color: $color-text-muted;
+        // Máximo de 3 líneas con "…" (evita tarjetas desiguales)
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+    }
+
+    // Precio en COP (juegos de pago): ahorro + original tachado + final
+    &__price {
+        display: flex;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: .45rem;
+        margin-bottom: .6rem;
+    }
+
+    &__discount {
+        padding: .1rem .45rem;
+        border-radius: 999px;
+        background: $color-accent;
+        font-size: .72rem;
+        font-weight: 700;
+        color: #ffffff;
+    }
+
+    &__price-old {
+        font-size: .82rem;
+        color: $color-text-muted;
+    }
+
+    &__price-now {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: $color-accent-bright;
+    }
+
+    &__cta {
+        align-self: flex-start;
+        font-size: .875rem;
+        font-weight: 600;
+        color: $color-accent-bright;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+        &:focus-visible {
+            outline: 2px solid $color-accent-bright;
+            outline-offset: 3px;
+        }
+    }
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(16, 124, 16, .45);
+        border-color: rgba(99, 214, 99, .35);
+    }
+}

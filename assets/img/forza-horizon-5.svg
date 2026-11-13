@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Ilustración Forza Horizon 5 para Xbox">
+  <defs>
+    <linearGradient id="fhbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b1055"/>
+      <stop offset=".55" stop-color="#7597de"/>
+      <stop offset="1" stop-color="#1a1a1a"/>
+    </linearGradient>
+    <radialGradient id="fhsun" cx="50%" cy="52%" r="34%">
+      <stop offset="0" stop-color="#ffd166" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#ff7b00" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#fhbg)"/>
+  <circle cx="400" cy="310" r="170" fill="url(#fhsun)"/>
+  <circle cx="400" cy="310" r="74" fill="#ffd166"/>
+  <!-- montañas de México -->
+  <path d="M0 360 L150 250 L260 360 Z" fill="#3b2a5a" opacity=".9"/>
+  <path d="M540 360 L660 240 L800 360 Z" fill="#3b2a5a" opacity=".9"/>
+  <rect y="360" width="800" height="120" fill="#241a3d"/>
+  <!-- carretera -->
+  <path d="M330 600 L388 372 L412 372 L470 600 Z" fill="#2f2f38"/>
+  <g fill="#ffd166">
+    <rect x="396" y="380" width="8" height="26"/><rect x="395" y="424" width="10" height="34"/>
+    <rect x="394" y="476" width="12" height="44"/><rect x="392" y="540" width="16" height="56"/>
+  </g>
+  <!-- auto deportivo en silueta -->
+  <g transform="translate(400 424)">
+    <path d="M-92 22 q6 -30 40 -34 l26 -22 q10 -8 30 -8 l36 0 q18 2 30 18 l22 26 q18 6 18 20 l0 14 q0 8 -10 8 l-178 0 q-12 0 -14 -10 z" fill="#111111" stroke="#e63946" stroke-width="5"/>
+    <path d="M-16 -30 l14 -14 q8 -6 22 -6 l30 0 q12 2 20 14 l14 20 z" fill="#9be0ff" opacity=".85"/>
+    <circle cx="-52" cy="38" r="20" fill="#111111" stroke="#e63946" stroke-width="5"/>
+    <circle cx="58" cy="38" r="20" fill="#111111" stroke="#e63946" stroke-width="5"/>
+    <circle cx="-52" cy="38" r="7" fill="#8a8a8a"/><circle cx="58" cy="38" r="7" fill="#8a8a8a"/>
+  </g>
+  <text x="400" y="468" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="700" fill="#ffffff" letter-spacing="5">FORZA HORIZON 5</text>
+  <text x="400" y="510" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#ffd166" letter-spacing="8">MÉXICO</text>
+  <rect x="322" y="536" width="156" height="34" rx="17" fill="#107c10"/>
+  <text x="400" y="559" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" fill="#ffffff" letter-spacing="2">OPEN WORLD</text>
+</svg>
