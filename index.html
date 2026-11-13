@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Tienda de Software y Videojuegos</title>
+        <meta name="description" content="Tienda de software y videojuegos: consolas Xbox Series X|S, juegos como Halo Infinite y Forza Horizon 5, controles y accesorios, con carrito de compras y precios en COP.">
+        <meta name="theme-color" content="#107C10">
+        <meta property="og:title" content="Tienda de Software y Videojuegos">
+        <meta property="og:description" content="Consolas Xbox Series X|S, juegos y accesorios con carrito de compras y precios en COP.">
+        <meta property="og:type" content="website">
+        <meta property="og:locale" content="es_CO">
+        <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="assets/js/bootstrap.bundle.min.js" defer></script>
+        <script src="assets/js/main.js" defer></script>
+    </head>
+    <body>
+        <header class="hero">
+            <h1>COLECCIÓN FUTURISTA</h1>
+            <p>Descubre los nuevos productos que te llevarán al mañana</p>
+
+            <!-- Destacado: se muestra de a un producto y se navega con ← →
+                 (los datos se toman de los botones de los modales, así el
+                 carrusel siempre coincide con el catálogo) -->
+            <div class="hero-showcase" role="group" aria-label="Productos destacados">
+                <button type="button" class="hero-showcase__arrow" id="destPrev" aria-label="Producto anterior">‹</button>
+                <div class="hero-showcase__body">
+                    <img class="hero-showcase__img" id="destImg" src="assets/img/halo5-xbox-one.svg"
+                        alt="Halo 5 Guardianes para XBOX ONE">
+                    <div class="hero-showcase__info">
+                        <p class="hero-showcase__name" id="destName" aria-live="polite">Halo 5 Guardianes para XBOX ONE</p>
+                        <p class="hero-showcase__price" id="destPrice">$94.000 COP</p>
+                        <button type="button" class="btn btn-brand product-detail__buy" id="destBuy"
+                                data-id="halo5" data-name="Halo 5 Guardianes para XBOX ONE"
+                                data-price="94000" data-img="assets/img/halo5-xbox-one.svg">Agregar al carrito</button>
+                    </div>
+                </div>
+                <button type="button" class="hero-showcase__arrow" id="destNext" aria-label="Producto siguiente">›</button>
+            </div>
+
+            <!-- Tráiler destacado: se cambia entre estrenos del catálogo con main.js -->
+            <div class="hero-trailer">
+                <div class="ratio ratio-16x9 video-hero">
+                    <iframe id="trailerFrame" src="https://www.youtube-nocookie.com/embed/66BiL6KwVEs?rel=0"
+                        title="Halo 5: Guardians - Tráiler Master Chief"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen></iframe>
+                </div>
+                <p class="hero-trailer__now" id="trailerAhora" aria-live="polite">🎬 Halo 5: Guardians — Tráiler de lanzamiento</p>
+                <div class="hero-trailer__nav" role="group" aria-label="Cambiar el tráiler destacado">
+                    <!-- Fila 1: trailers fijos del catálogo (Xbox) -->
+                    <div class="hero-trailer__set">
+                    <button type="button" class="hero-trailer__tab is-active" aria-pressed="true"
+                            data-video="66BiL6KwVEs" data-title="Halo 5: Guardians - Tráiler Master Chief"
+                            data-now="🎬 Halo 5: Guardians — Tráiler de lanzamiento">
+                        <img src="assets/img/halo5-xbox-one.svg" alt="" aria-hidden="true">
+                        <span>Halo 5</span>
+                    </button>
+                    <button type="button" class="hero-trailer__tab" aria-pressed="false"
+                            data-video="EyHwnTKO7JU" data-title="Halo: Reach - Tráiler oficial"
+                            data-now="🎬 Halo: Reach — Tráiler oficial (Xbox 360)">
+                        <img src="assets/img/xbox360-halo-reach.svg" alt="" aria-hidden="true">
+                        <span>Halo: Reach</span>
+                    </button>
+                    <button type="button" class="hero-trailer__tab" aria-pressed="false"
+                            data-video="i8t5peTKSu0" data-title="Controles Xbox inalámbricos - Elevate Your Game"
+                            data-now="🎬 Control Xbox Series X|S — Elevate Your Game">
+                        <img src="assets/img/control-series-x.svg" alt="" aria-hidden="true">
+                        <span>Control X|S</span>
+                    </button>
+                    <button type="button" class="hero-trailer__tab" aria-pressed="false"
+                            data-video="VhM3NRu23Sk" data-title="Cyberpunk 2077 - Tráiler de lanzamiento"
+                            data-now="🎬 Cyberpunk 2077 — Tráiler de lanzamiento">
+                        <img src="assets/img/cyberpunk-2077.svg" alt="" aria-hidden="true">
+                        <span>Cyberpunk</span>
+                    </button>
+                    </div>
+                    <!-- Fila 2: estrenos dinámicos, se agrega desde main.js -->
+                </div>
+            </div>
+        </header>
+        <main class="container my-4" id="productos">
+            <h2 class="mb-3">Destacados</h2>
+            <div class="row g-3">
+                <div class="col-6 col-lg-3">
+                    <article class="product-card" data-bs-toggle="modal" data-bs-target="#modal-halo5">
+                        <img class="product-card__img" src="assets/img/halo5-xbox-one.svg" alt="Halo 5 Guardians para Xbox One">
+                        <h5 class="product-card__title">Halo 5 Guardianes para XBOX ONE</h5>
+                        <p class="product-card__price">$94.000 COP</p>
+                        <button type="button" class="product-card__cta" data-bs-toggle="modal" data-bs-target="#modal-halo5">Ver detalle →</button>
+                    </article>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <article class="product-card" data-bs-toggle="modal" data-bs-target="#modal-xbox360">
+                        <img class="product-card__img" src="assets/img/xbox360-halo-reach.svg" alt="Xbox 360 edición especial Halo Reach">
+                        <h5 class="product-card__title">XBOX 360 edición especial Halo Reach</h5>
+                        <p class="product-card__price">$550.000 COP</p>
+                        <button type="button" class="product-card__cta" data-bs-toggle="modal" data-bs-target="#modal-xbox360">Ver detalle →</button>
+                    </article>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <article class="product-card" data-bs-toggle="modal" data-bs-target="#modal-control">
+                        <img class="product-card__img" src="assets/img/control-series-x.svg" alt="Control inalámbrico Xbox Series X color beige">
+                        <h5 class="product-card__title">Control inalámbrico XBOX series X color beige</h5>
+                        <p class="product-card__price">$125.000 COP</p>
+                        <button type="button" class="product-card__cta" data-bs-toggle="modal" data-bs-target="#modal-control">Ver detalle →</button>
+                    </article>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <article class="product-card" data-bs-toggle="modal" data-bs-target="#modal-cyberpunk">
+                        <img class="product-card__img" src="assets/img/cyberpunk-2077.svg" alt="Cyberpunk 2077 para PC">
+                        <h5 class="product-card__title">Cyberpunk 2077 (PC)</h5>
+                        <p class="product-card__price">$200.000 COP</p>
+                        <button type="button" class="product-card__cta" data-bs-toggle="modal" data-bs-target="#modal-cyberpunk">Ver detalle →</button>
+                    </article>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <article class="product-card" data-bs-toggle="modal" data-bs-target="#modal-seriesx">
+                        <img class="product-card__img" src="assets/img/series-x.svg" alt="Consola Xbox Series X">
+                        <h5 class="product-card__title">Consola XBOX Series X 1TB</h5>
+                        <p class="product-card__price">$1.990.000 COP</p>
+                        <button type="button" class="product-card__cta" data-bs-toggle="modal" data-bs-target="#modal-seriesx">Ver detalle →</button>
+                    </article>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <article class="product-card" data-bs-toggle="modal" data-bs-target="#modal-seriess">
+                        <img class="product-card__img" src="assets/img/series-s.svg" alt="Consola Xbox Series S 512GB">
+                        <h5 class="product-card__title">Consola XBOX Series S 512GB</h5>
+                        <p class="product-card__price">$1.190.000 COP</p>
+                        <button type="button" class="product-card__cta" data-bs-toggle="modal" data-bs-target="#modal-seriess">Ver detalle →</button>
+                    </article>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <article class="product-card" data-bs-toggle="modal" data-bs-target="#modal-haloinfinite">
+                        <img class="product-card__img" src="assets/img/halo-infinite.svg" alt="Halo Infinite para Xbox Series X|S">
+                        <h5 class="product-card__title">Halo Infinite XBOX series X|S</h5>
+                        <p class="product-card__price">$170.000 COP</p>
+                        <button type="button" class="product-card__cta" data-bs-toggle="modal" data-bs-target="#modal-haloinfinite">Ver detalle →</button>
+                    </article>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <article class="product-card" data-bs-toggle="modal" data-bs-target="#modal-forza">
+                        <img class="product-card__img" src="assets/img/forza-horizon-5.svg" alt="Forza Horizon 5 para Xbox Series X|S">
+                        <h5 class="product-card__title">Forza Horizon 5 XBOX series X|S</h5>
+                        <p class="product-card__price">$190.000 COP</p>
+                        <button type="button" class="product-card__cta" data-bs-toggle="modal" data-bs-target="#modal-forza">Ver detalle →</button>
+                    </article>
+                </div>
+            </div>
+
+            <!-- ══ Taller: Integración full-stack mediante API REST ══
+                 Los datos de esta sección no están en el HTML: los pinta
+                 JavaScript (assets/js/main.js) al consumir una API externa. -->
+            <section class="api-section mt-5" id="api-rest" aria-labelledby="apiTitulo">
+                <div class="api-section__head">
+                    <div>
+                        <h2 id="apiTitulo">Novedades en vivo</h2>
+                    </div>
+                    <button type="button" class="btn btn-outline-success btn-sm" id="apiRecargar">↻ Recargar datos</button>
+                </div>
+
+                <!-- Pestañas: cambian la fuente de datos (cada una con su fetch) -->
+                <ul class="nav nav-pills api-tabs" id="apiTabs" role="tablist" aria-label="Fuente de datos">
+                    <li class="nav-item" role="presentation">
+                        <button type="button" class="nav-link active" id="tabGratis" data-fuente="gratis" role="tab" aria-selected="true">🎮 Gratis <span class="api-tabs__count" id="cuentaGratis" hidden></span></button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button type="button" class="nav-link" id="tabPago" data-fuente="pago" role="tab" aria-selected="false">💰 De pago <span class="api-tabs__count" id="cuentaPago" hidden></span></button>
+                    </li>
+                </ul>
+
+                <!-- Buscador con autocompletado (filtra datosApi en el cliente) -->
+                <div class="api-search">
+                    <label class="visually-hidden" for="apiBuscar">Buscar un juego en el catálogo</label>
+                    <div class="input-group api-search__group">
+                        <span class="input-group-text api-search__icon" aria-hidden="true">🔍</span>
+                        <input type="text" id="apiBuscar" class="form-control api-search__input"
+                               placeholder="Buscar un juego… (ej. Valorant, Halo)"
+                               autocomplete="off" role="combobox" aria-expanded="false"
+                               aria-controls="apiSugerencias" aria-autocomplete="list"
+                               aria-describedby="apiResultado" disabled>
+                        <button type="button" class="input-group-text api-search__clear" id="apiLimpiar" hidden aria-label="Limpiar búsqueda">✕</button>
+                    </div>
+                    <ul class="api-search__list" id="apiSugerencias" role="listbox" aria-label="Sugerencias de juegos" hidden></ul>
+                </div>
+                <p class="api-section__hint" id="apiResultado" role="status" hidden></p>
+
+                <!-- Estado de carga (spinner de Bootstrap) -->
+                <div class="api-status" id="apiCargando" role="status">
+                    <div class="spinner-border text-success" aria-hidden="true"></div>
+                    <p class="mb-0">Consultando la API…</p>
+                </div>
+
+                <!-- Estado de error (alerta de Bootstrap, oculta por defecto) -->
+                <div class="alert alert-danger d-none" id="apiError" role="alert"></div>
+
+                <!-- Resultados: el JS pinta aquí las tarjetas renderizadas -->
+                <div class="row g-3" id="apiGrid"></div>
+            </section>
+        </main>
+
+        <!-- Modales de detalle de producto (con tráiler) -->
+        <div class="modal fade" id="modal-halo5" tabindex="-1" aria-labelledby="modal-halo5-label" aria-hidden="true" data-video="66BiL6KwVEs" data-video-title="Tráiler de Halo 5: Guardians">
+            <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-body product-detail">
+                        <button type="button" class="btn-close btn-close-white product-detail__close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        <div class="product-detail__media">
+                            <img src="assets/img/halo5-xbox-one.svg" alt="Halo 5 Guardians para Xbox One">
+                        </div>
+                        <div class="product-detail__info">
+                            <h3 class="product-detail__title" id="modal-halo5-label">Halo 5 Guardianes para XBOX ONE</h3>
+                            <p class="product-detail__desc">La campaña del Master Chief y el Escuadrón Azul en una épica aventura por el universo Halo, con modos multijugador Arena y Warzone incluidos.</p>
+                            <p class="product-detail__price">$94.000 COP</p>
+                            <div class="product-detail__actions">
+                                <button type="button" class="btn btn-brand product-detail__buy" data-id="halo5" data-name="Halo 5 Guardianes para XBOX ONE" data-price="94000" data-img="assets/img/halo5-xbox-one.svg">Agregar al carrito</button>
+                                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                        <div class="product-detail__video">
+                            <p class="product-detail__video-label">Tráiler oficial</p>
+                            <div class="product-detail__video-frame"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modal-xbox360" tabindex="-1" aria-labelledby="modal-xbox360-label" aria-hidden="true" data-video="EyHwnTKO7JU" data-video-title="Tráiler de Halo: Reach">
+            <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-body product-detail">
+                        <button type="button" class="btn-close btn-close-white product-detail__close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        <div class="product-detail__media">
+                            <img src="assets/img/xbox360-halo-reach.svg" alt="Xbox 360 edición especial Halo Reach">
+                        </div>
+                        <div class="product-detail__info">
+                            <h3 class="product-detail__title" id="modal-xbox360-label">XBOX 360 edición especial Halo Reach</h3>
+                            <p class="product-detail__desc">Consola Xbox 360 en edición especial inspirada en Halo: Reach, con diseño exclusivo, disco duro incluido y la saga lista para jugar.</p>
+                            <p class="product-detail__price">$550.000 COP</p>
+                            <div class="product-detail__actions">
+                                <button type="button" class="btn btn-brand product-detail__buy" data-id="xbox360" data-name="XBOX 360 edición especial Halo Reach" data-price="550000" data-img="assets/img/xbox360-halo-reach.svg">Agregar al carrito</button>
+                                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                        <div class="product-detail__video">
+                            <p class="product-detail__video-label">Tráiler oficial</p>
+                            <div class="product-detail__video-frame"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modal-control" tabindex="-1" aria-labelledby="modal-control-label" aria-hidden="true" data-video="i8t5peTKSu0" data-video-title="Tráiler de controles Xbox inalámbricos">
+            <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-body product-detail">
+                        <button type="button" class="btn-close btn-close-white product-detail__close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        <div class="product-detail__media">
+                            <img src="assets/img/control-series-x.svg" alt="Control inalámbrico Xbox Series X color beige">
+                        </div>
+                        <div class="product-detail__info">
+                            <h3 class="product-detail__title" id="modal-control-label">Control inalámbrico XBOX series X color beige</h3>
+                            <p class="product-detail__desc">Control inalámbrico para Xbox Series X|S en color beige, con agarres antideslizantes, botón Share y compatibilidad con Xbox One y PC.</p>
+                            <p class="product-detail__price">$125.000 COP</p>
+                            <div class="product-detail__actions">
+                                <button type="button" class="btn btn-brand product-detail__buy" data-id="control" data-name="Control inalámbrico XBOX series X color beige" data-price="125000" data-img="assets/img/control-series-x.svg">Agregar al carrito</button>
+                                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                        <div class="product-detail__video">
+                            <p class="product-detail__video-label">Tráiler oficial</p>
+                            <div class="product-detail__video-frame"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modal-cyberpunk" tabindex="-1" aria-labelledby="modal-cyberpunk-label" aria-hidden="true" data-video="VhM3NRu23Sk" data-video-title="Tráiler de Cyberpunk 2077">
+            <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-body product-detail">
+                        <button type="button" class="btn-close btn-close-white product-detail__close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        <div class="product-detail__media">
+                            <img src="assets/img/cyberpunk-2077.svg" alt="Cyberpunk 2077 para PC">
+                        </div>
+                        <div class="product-detail__info">
+                            <h3 class="product-detail__title" id="modal-cyberpunk-label">Cyberpunk 2077 (PC)</h3>
+                            <p class="product-detail__desc">RPG de mundo abierto ambientado en Night City donde te conviertes en V, una mercenaria en busca de un implante único. Versión para PC.</p>
+                            <p class="product-detail__price">$200.000 COP</p>
+                            <div class="product-detail__actions">
+                                <button type="button" class="btn btn-brand product-detail__buy" data-id="cyberpunk" data-name="Cyberpunk 2077 (PC)" data-price="200000" data-img="assets/img/cyberpunk-2077.svg">Agregar al carrito</button>
+                                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                        <div class="product-detail__video">
+                            <p class="product-detail__video-label">Tráiler oficial</p>
+                            <div class="product-detail__video-frame"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modal-seriesx" tabindex="-1" aria-labelledby="modal-seriesx-label" aria-hidden="true" data-video="0tUqIHwHDEc" data-video-title="Tráiler de Xbox Series X">
+            <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-body product-detail">
+                        <button type="button" class="btn-close btn-close-white product-detail__close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        <div class="product-detail__media">
+                            <img src="assets/img/series-x.svg" alt="Consola Xbox Series X">
+                        </div>
+                        <div class="product-detail__info">
+                            <h3 class="product-detail__title" id="modal-seriesx-label">Consola XBOX Series X 1TB</h3>
+                            <p class="product-detail__desc">La consola más potente de Xbox: 4K a 60 FPS, trazado de rayos, SSD de 1TB y retrocompatibilidad con miles de juegos de Xbox One, Xbox 360 y la original.</p>
+                            <p class="product-detail__price">$1.990.000 COP</p>
+                            <div class="product-detail__actions">
+                                <button type="button" class="btn btn-brand product-detail__buy" data-id="seriesx" data-name="Consola XBOX Series X 1TB" data-price="1990000" data-img="assets/img/series-x.svg">Agregar al carrito</button>
+                                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                        <div class="product-detail__video">
+                            <p class="product-detail__video-label">Tráiler oficial</p>
+                            <div class="product-detail__video-frame"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modal-seriess" tabindex="-1" aria-labelledby="modal-seriess-label" aria-hidden="true" data-video="KHLfCFMKxPg" data-video-title="Tráiler de Xbox Series S">
+            <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-body product-detail">
+                        <button type="button" class="btn-close btn-close-white product-detail__close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        <div class="product-detail__media">
+                            <img src="assets/img/series-s.svg" alt="Consola Xbox Series S 512GB">
+                        </div>
+                        <div class="product-detail__info">
+                            <h3 class="product-detail__title" id="modal-seriess-label">Consola XBOX Series S 512GB</h3>
+                            <p class="product-detail__desc">La Xbox más pequeña y accesible: 100% digital, 1440p a 120 FPS, SSD de 512GB y Quick Resume. Ideal para entrar a la nueva generación sin gastar de más.</p>
+                            <p class="product-detail__price">$1.190.000 COP</p>
+                            <div class="product-detail__actions">
+                                <button type="button" class="btn btn-brand product-detail__buy" data-id="seriess" data-name="Consola XBOX Series S 512GB" data-price="1190000" data-img="assets/img/series-s.svg">Agregar al carrito</button>
+                                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                        <div class="product-detail__video">
+                            <p class="product-detail__video-label">Tráiler oficial</p>
+                            <div class="product-detail__video-frame"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modal-haloinfinite" tabindex="-1" aria-labelledby="modal-haloinfinite-label" aria-hidden="true" data-video="pzlCxADSx0U" data-video-title="Tráiler de Halo Infinite">
+            <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-body product-detail">
+                        <button type="button" class="btn-close btn-close-white product-detail__close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        <div class="product-detail__media">
+                            <img src="assets/img/halo-infinite.svg" alt="Halo Infinite para Xbox Series X|S">
+                        </div>
+                        <div class="product-detail__info">
+                            <h3 class="product-detail__title" id="modal-haloinfinite-label">Halo Infinite XBOX series X|S</h3>
+                            <p class="product-detail__desc">El regreso del Master Chief en el anillo Zeta Halo: campaña de mundo abierto, multijugador gratuito con arena y Big Team Battle, y el editor de mapas Forge.</p>
+                            <p class="product-detail__price">$170.000 COP</p>
+                            <div class="product-detail__actions">
+                                <button type="button" class="btn btn-brand product-detail__buy" data-id="haloinfinite" data-name="Halo Infinite XBOX series X|S" data-price="170000" data-img="assets/img/halo-infinite.svg">Agregar al carrito</button>
+                                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                        <div class="product-detail__video">
+                            <p class="product-detail__video-label">Tráiler oficial</p>
+                            <div class="product-detail__video-frame"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modal-forza" tabindex="-1" aria-labelledby="modal-forza-label" aria-hidden="true" data-video="Rv7xLt5yNsM" data-video-title="Tráiler de Forza Horizon 5">
+            <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-body product-detail">
+                        <button type="button" class="btn-close btn-close-white product-detail__close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        <div class="product-detail__media">
+                            <img src="assets/img/forza-horizon-5.svg" alt="Forza Horizon 5 para Xbox Series X|S">
+                        </div>
+                        <div class="product-detail__info">
+                            <h3 class="product-detail__title" id="modal-forza-label">Forza Horizon 5 XBOX series X|S</h3>
+                            <p class="product-detail__desc">Explora México en mundo abierto con más de 500 autos, clima dinámico y eventos festival. Incluye acceso online y modo multijugador con amigos en todas las plataformas.</p>
+                            <p class="product-detail__price">$190.000 COP</p>
+                            <div class="product-detail__actions">
+                                <button type="button" class="btn btn-brand product-detail__buy" data-id="forza5" data-name="Forza Horizon 5 XBOX series X|S" data-price="190000" data-img="assets/img/forza-horizon-5.svg">Agregar al carrito</button>
+                                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                        <div class="product-detail__video">
+                            <p class="product-detail__video-label">Tráiler oficial</p>
+                            <div class="product-detail__video-frame"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón flotante del carrito -->
+        <button class="cart-fab" type="button" data-bs-toggle="offcanvas" data-bs-target="#carritoPanel" aria-controls="carritoPanel" aria-label="Abrir carrito de compras">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+            </svg>
+            <span class="cart-fab__badge" id="carritoBadge" hidden>0</span>
+        </button>
+
+        <!-- Panel lateral del carrito -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="carritoPanel" aria-labelledby="carritoPanelTitulo">
+            <div class="offcanvas-header">
+                <h2 class="offcanvas-title" id="carritoPanelTitulo">Carrito de compras</h2>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+            </div>
+            <div class="offcanvas-body">
+                <p class="cart-empty" id="carritoVacio">Tu carrito está vacío. ¡Agrega productos desde su detalle!</p>
+                <ul class="cart-list" id="carritoLista" hidden></ul>
+                <div class="cart-footer" id="carritoPie" hidden>
+                    <p class="cart-total">Total <strong id="carritoTotal">$0 COP</strong></p>
+                    <div class="cart-actions">
+                        <button type="button" class="btn btn-outline-light" id="carritoVaciar">Vaciar carrito</button>
+                        <button type="button" class="btn btn-brand cart-actions__buy" id="carritoComprar">Finalizar compra →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de compra: formulario de datos → confirmación de éxito -->
+        <div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="modalCompraTitulo" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="modalCompraTitulo">Finalizar compra</h2>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Paso 1: formulario con los datos de envío -->
+                        <div id="compraPasoForm">
+                            <p class="checkout-intro">Completa tus datos para enviar el pedido. Los campos marcados con <span aria-hidden="true">*</span> son obligatorios.</p>
+
+                            <div class="checkout-summary" aria-label="Resumen del pedido">
+                                <p class="checkout-summary__line"><span>Unidades</span><strong id="compraUnidades">0</strong></p>
+                                <p class="checkout-summary__line"><span>Total a pagar</span><strong id="compraTotal">$0 COP</strong></p>
+                            </div>
+
+                            <form id="formCompra" novalidate>
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <label class="form-label" for="compraNombre">Nombre completo <span aria-hidden="true">*</span></label>
+                                        <input class="form-control" type="text" id="compraNombre" placeholder="Ej. Ana Pérez Gómez" autocomplete="name" required minlength="3">
+                                        <div class="invalid-feedback">Escribe tu nombre completo.</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="compraCorreo">Correo electrónico <span aria-hidden="true">*</span></label>
+                                        <input class="form-control" type="email" id="compraCorreo" placeholder="tu@correo.com" autocomplete="email" required>
+                                        <div class="invalid-feedback">Escribe un correo válido (ej. tu@correo.com).</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="compraTelefono">Teléfono <span aria-hidden="true">*</span></label>
+                                        <input class="form-control" type="tel" id="compraTelefono" placeholder="Ej. 300 123 4567" autocomplete="tel" required pattern="[0-9+\(\) \-]{7,20}">
+                                        <div class="invalid-feedback">Escribe un teléfono de 7 a 20 caracteres.</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label" for="compraDireccion">Dirección de entrega <span aria-hidden="true">*</span></label>
+                                        <input class="form-control" type="text" id="compraDireccion" placeholder="Calle 12 # 34-56, apto 201" autocomplete="street-address" required minlength="5">
+                                        <div class="invalid-feedback">Escribe la dirección donde llegará el pedido.</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label" for="compraCiudad">Ciudad <span aria-hidden="true">*</span></label>
+                                        <input class="form-control" type="text" id="compraCiudad" placeholder="Ej. Bucaramanga" autocomplete="address-level2" required minlength="2">
+                                        <div class="invalid-feedback">Escribe la ciudad de entrega.</div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Paso 2: mensaje de compra exitosa -->
+                        <div class="checkout-success" id="compraPasoExito" hidden>
+                            <span class="checkout-success__check" aria-hidden="true">✓</span>
+                            <h3 class="checkout-success__title">¡Tu compra fue exitosa!</h3>
+                            <p class="checkout-success__text" id="exitoMensaje">
+                                Tu pedido llegará al correo y a la dirección de compra que registraste.
+                            </p>
+                            <ul class="checkout-success__datos">
+                                <li><span>Número de pedido</span><strong id="exitoPedido">—</strong></li>
+                                <li><span>Total pagado</span><strong id="exitoTotal">—</strong></li>
+                                <li><span>Correo de confirmación</span><strong id="exitoCorreo">—</strong></li>
+                                <li><span>Dirección de entrega</span><strong id="exitoDireccion">—</strong></li>
+                                <li><span>Ciudad</span><strong id="exitoCiudad">—</strong></li>
+                            </ul>
+                            <p class="checkout-success__nota">Recibirás el comprobante en tu correo y el pedido se enviará a la dirección indicada.</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer" id="compraPieForm">
+                        <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" form="formCompra" class="btn btn-brand" id="compraConfirmar">Confirmar compra</button>
+                    </div>
+                    <div class="modal-footer" id="compraPieExito" hidden>
+                        <button type="button" class="btn btn-brand" data-bs-dismiss="modal">¡Perfecto!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="site-footer">© 2026 El don del ciber</footer>
+    </body>
+</html>

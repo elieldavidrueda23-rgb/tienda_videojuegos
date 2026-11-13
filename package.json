@@ -1,0 +1,28 @@
+{
+  "name": "entregable_6",
+  "version": "1.0.0",
+  "description": "Tienda de Software y Videojuegos - sitio estático con HTML, SCSS (Sass) y Bootstrap 5",
+  "private": true,
+  "scripts": {
+    "build": "sass scss/main.scss css/main.css --quiet-deps --silence-deprecation=import,global-builtin,if-function,color-functions",
+    "build:prod": "sass scss/main.scss css/main.min.css --style=compressed --no-source-map --quiet-deps --silence-deprecation=import,global-builtin,if-function,color-functions",
+    "watch": "sass scss/main.scss css/main.css --watch --quiet-deps --silence-deprecation=import,global-builtin,if-function,color-functions",
+    "serve": "http-server . -p 8080 -o -c-1",
+    "dev": "npm run watch",
+    "postinstall": "node -e \"require('fs').copyFileSync('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js','assets/js/bootstrap.bundle.min.js')\""
+  },
+  "keywords": [
+    "html",
+    "scss",
+    "sass",
+    "bootstrap",
+    "sitio-estatico"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "bootstrap": "^5.3.8",
+    "http-server": "^14.1.1",
+    "sass": "^1.106.1"
+  }
+}
